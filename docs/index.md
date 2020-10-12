@@ -10,7 +10,7 @@ The name is due to analogy with an office responsible. Imagine you come there an
 
 ## Use cases
 
-![Use cases diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.github.com/yoursdearboy/printer/master/src/docs/use-cases.puml)
+![Use cases diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://raw.githubusercontent.com/yoursdearboy/printer/master/docs/use-cases.puml)
 
 ## Great Reporter
 
@@ -110,6 +110,6 @@ Instructions format uses `docx4j-ImportXHTML` [2] format though may (and probabl
 
 # Resources
 
-[1] [docx4j library](https://www.docx4java.org/trac/docx4j)
-[2] [docx4j-ImportXHTML](https://github.com/plutext/docx4j-ImportXHTML)
+[1] [docx4j library](https://www.docx4java.org/trac/docx4j)  
+[2] [docx4j-ImportXHTML](https://github.com/plutext/docx4j-ImportXHTML)  
 [3] [docx4j cheatsheet](https://docx4java.org/docx4j/plutext-docx4j_on_a_page-v800.pdf)
