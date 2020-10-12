@@ -1,0 +1,31 @@
+@startuml
+skinparam actorStyle awesome
+
+:<&person> User: as User << User >>
+:<&cog> Application: as App << Application >>
+:<&cog> Great Reporter: as GrReporter << Service >>
+:<&cog> Reporter: as Reporter << Service >>
+:<&print> Printer: as Printer << Service >>
+
+User -|> App : through
+GrReporter -|> Reporter : extends
+Reporter -|> Printer : uses
+
+(Create an ad-hoc document) as (create-adhoc)
+GrReporter --> (create-adhoc)
+User ---> (create-adhoc)
+
+(Create a predefined document) as (create-predef)
+Reporter --> (create-predef)
+User ---> (create-predef)
+
+(Find an old document) as (find-old)
+Reporter ---> (find-old)
+User ---> (find-old)
+
+(Evaluate «instructions» to create \n PDF / DOCX / CSV / XLSX document) as (print)
+Printer --> (print)
+App ---> (print)
+
+Printer --> (<U+002A> makes brrrrr <U+002A>)
+@enduml
