@@ -1,4 +1,4 @@
-# Printer
+# 🖨 Printer
 
 A service «to print» documents into various office formats.
 
@@ -6,4 +6,4 @@ Printer is like a web-browser - it receives «instructions» in an XML document 
 It supports scripting through JSR.
 No templating or processing capabilities, for this use another service called Reporter (not implemented yet).
 
-For more detailed description see [documentation](./docs/index.md).
+For detailed description see [documentation](./docs/index.md).
