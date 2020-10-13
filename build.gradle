@@ -11,3 +11,7 @@ dependencies {
     implementation 'org.docx4j:docx4j-ImportXHTML:6.1'
     testImplementation 'junit:junit:4.13'
 }
+
+test {
+    useJUnit()
+}
