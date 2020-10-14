@@ -1,18 +1,28 @@
 plugins {
+    id 'org.springframework.boot' version '2.3.4.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
 }
 
+group = 'com.poffice'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
 repositories {
+    mavenCentral()
     jcenter()
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.docx4j:docx4j-JAXB-Internal:8.2.3'
     implementation 'org.docx4j:docx4j-ImportXHTML:8.0.0'
     implementation 'org.slf4j:slf4j-api:1.7.5'
-    testImplementation 'junit:junit:4.13'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
 test {
-    useJUnit()
+    useJUnitPlatform()
 }
