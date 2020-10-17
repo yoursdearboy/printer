@@ -17,7 +17,9 @@ public class PrinterController {
     @RequestMapping(value = "/*", method = RequestMethod.POST)
     public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, Docx4JException {
         File file = new ClassPathResource("demo.docx").getFile();
-        System.out.println(file);
+        if (file == null) {
+            throw new Exception("no demo file");
+        }
         WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(file);
  
 	byte[] result = "Hello, World!".getBytes();
