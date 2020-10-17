@@ -16,8 +16,9 @@ import java.io.IOException;
 public class PrinterController {
     @RequestMapping(value = "/*", method = RequestMethod.POST)
     public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, Docx4JException {
-       File file = new ClassPathResource("demo.docx").getFile();
-       WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(file); 
+        File file = new ClassPathResource("demo.docx").getFile();
+        System.out.println(file);
+        WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(file);
  
 	byte[] result = "Hello, World!".getBytes();
         response.getOutputStream().write(result);
