@@ -15,7 +15,7 @@ import java.io.IOException;
 @Controller
 public class PrinterController {
     @RequestMapping(value = "/*", method = RequestMethod.POST)
-    public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, Docx4JException {
+    public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, Docx4JException, Exception {
         File file = new ClassPathResource("demo.docx").getFile();
         if (file == null) {
             throw new Exception("no demo file");
