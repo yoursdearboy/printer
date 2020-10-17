@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 public class PrinterController {
     @RequestMapping(value = "/*", method = RequestMethod.POST)
     public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, Docx4JException, URISyntaxException {
-       File file = new File(getClass().getClassLoader().getResource("demo.docx").toURI());
+       File file = new File(getClass().getClassLoader().getResource("/demo.docx").toURI());
        WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(file); 
  
 	byte[] result = "Hello, World!".getBytes();
