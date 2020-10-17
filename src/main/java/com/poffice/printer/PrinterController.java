@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 @Controller
 public class PrinterController {
     @RequestMapping(value = "/*", method = RequestMethod.POST)
     public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, Docx4JException {
-       WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(new java.io.File("demo.docx")); 
+       File file = new File(getClass().getClassLoader().getResource("demo.docx").toURI());
+       WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(file); 
  
 	byte[] result = "Hello, World!".getBytes();
         response.getOutputStream().write(result);
