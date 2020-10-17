@@ -21,9 +21,9 @@ public class PrinterController {
             throw new Exception("no demo file");
         }
         WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(file);
- 
-	byte[] result = "Hello, World!".getBytes();
+
+        byte[] result = "Hello, World!".getBytes();
         response.getOutputStream().write(result);
-	response.setHeader("Content-Type", "plain/text");
+        response.setHeader("Content-Type", "plain/text");
     }
 }
