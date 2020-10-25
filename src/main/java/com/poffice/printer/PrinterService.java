@@ -1,28 +1,36 @@
 package com.poffice.printer;
 
-import org.docx4j.convert.in.xhtml.XHTMLImporter;
-import org.docx4j.convert.in.xhtml.XHTMLImporterImpl;
-import org.docx4j.openpackaging.exceptions.InvalidFormatException;
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.stereotype.Service;
-
-import javax.servlet.ServletInputStream;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
+
+import org.docx4j.convert.in.xhtml.XHTMLImporter;
+import org.docx4j.convert.in.xhtml.XHTMLImporterImpl;
+import org.docx4j.openpackaging.exceptions.Docx4JException;
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+import org.springframework.stereotype.Service;
 
 @Service
 public class PrinterService {
-    public File print(ServletInputStream body) throws InvalidFormatException, IOException, Exception {
-        WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.createPackage();
-        XHTMLImporter importer = new XHTMLImporterImpl(wordMLPackage);
-        List<Object> content = importer.convert(body,"/Users/yuurrraaaa/IdeaProjects/printer/src/main/resources");
-        wordMLPackage.getMainDocumentPart().getContent().addAll(content);
-        File exportFile = new File("demo.docx");
-        wordMLPackage.save(exportFile);
+    public File print(InputStream doc) throws Docx4JException, IOException {
+        WordprocessingMLPackage wMlPackage = createWMLPackage(doc);
+        File file = File.createTempFile("", ".docx");
+        wMlPackage.save(file);
+        return file;
+    }
 
-        return exportFile;
+    public void print(InputStream doc, OutputStream out) throws Docx4JException {
+        WordprocessingMLPackage wMlPackage = createWMLPackage(doc);
+        wMlPackage.save(out);
+    }
+
+    protected WordprocessingMLPackage createWMLPackage(InputStream doc) throws Docx4JException {
+        WordprocessingMLPackage wMlPackage = WordprocessingMLPackage.createPackage();
+        XHTMLImporter importer = new XHTMLImporterImpl(wMlPackage);
+        List<Object> content = importer.convert(doc, null);
+        wMlPackage.getMainDocumentPart().getContent().addAll(content);
+        return wMlPackage;
     }
 }
