@@ -18,7 +18,11 @@ public class PrinterController {
 
     @RequestMapping(value = "/*", method = RequestMethod.POST)
     public void print(HttpServletRequest request, HttpServletResponse response) throws Docx4JException, IOException {
+        String contentDisposition = String.format("attachment; filename=%s", "response.docx");
+        response.setHeader("Content-Disposition", contentDisposition);
+        response.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingm");
         printerService.print(request.getInputStream(),
                              response.getOutputStream());
+        response.setHeader("Content-Length", String.valueOf(response.getBufferSize()));
     }
 }
