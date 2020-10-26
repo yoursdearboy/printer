@@ -21,7 +21,7 @@ public class Docx4jXHTMLWriter implements Writer {
             wMlPackage.getMainDocumentPart().getContent().addAll(content);
             wMlPackage.save(out);    
         } catch (Docx4JException e) {
-            throw new WriterException();
+            throw new WriterException(e.getMessage());
         }
     }
 }

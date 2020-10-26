@@ -1,5 +1,7 @@
 package com.poffice.printer;
 
-// TODO: Extend exception
-public class WriterException extends Exception {    
+public class WriterException extends Exception {
+    WriterException(String s) {
+        super(s);
+    }
 }
