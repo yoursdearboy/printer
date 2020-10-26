@@ -10,7 +10,7 @@ import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("Docx4jXHTMLWriter")
 public class Docx4jXHTMLWriter implements Writer {
     @Override
     public void write(InputStream doc, OutputStream out) throws WriterException {

@@ -14,16 +14,16 @@ public class PrinterService {
     @Autowired
     WriterFactory writerFactory;
 
-    public File print(InputStream doc) throws IOException, WriterException {
+    public File print(InputStream doc, String writerName) throws IOException, WriterException {
         File file = File.createTempFile("", ".docx");
         OutputStream out = new FileOutputStream(file);
-        Writer writer = writerFactory.getWriter();
+        Writer writer = writerFactory.getWriter(writerName);
         writer.write(doc, out);
         return file;
     }
 
-    public void print(InputStream doc, OutputStream out) throws WriterException {
-        Writer writer = writerFactory.getWriter();
+    public void print(InputStream doc, OutputStream out, String writerName) throws WriterException {
+        Writer writer = writerFactory.getWriter(writerName);
         writer.write(doc, out);
     }
 }

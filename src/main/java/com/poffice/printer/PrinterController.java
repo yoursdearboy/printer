@@ -18,6 +18,7 @@ public class PrinterController {
     @RequestMapping(value = "/*", method = RequestMethod.POST)
     public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, WriterException {
         printerService.print(request.getInputStream(),
-                             response.getOutputStream());
+                             response.getOutputStream(),
+                             "Docx4jXHTMLWriter");
     }
 }
