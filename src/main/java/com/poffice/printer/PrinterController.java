@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.docx4j.openpackaging.exceptions.Docx4JException;
 import org.springframework.beans.factory.annotation.Autowired;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,12 +23,13 @@ public class PrinterController {
     private PrinterService printerService;
 
     @RequestMapping(value = "/*", method = RequestMethod.POST)
-    public void print(HttpServletRequest request, HttpServletResponse response) throws Docx4JException, IOException {
+    public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, WriterException {
         String contentDisposition = String.format("attachment; filename=%s", "response.docx");
         response.setHeader("Content-Disposition", contentDisposition);
         response.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingm");
         printerService.print(request.getInputStream(),
-                             response.getOutputStream());
+                             response.getOutputStream(),
+                             "LibreOfficePDFWriter");
         response.setHeader("Content-Length", String.valueOf(response.getBufferSize()));
     }
 }
