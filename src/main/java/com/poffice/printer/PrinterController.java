@@ -19,6 +19,6 @@ public class PrinterController {
     public void print(HttpServletRequest request, HttpServletResponse response) throws IOException, WriterException {
         printerService.print(request.getInputStream(),
                              response.getOutputStream(),
-                             "Docx4jXHTMLWriter");
+                             "LibreOfficePDFWriter");
     }
 }
