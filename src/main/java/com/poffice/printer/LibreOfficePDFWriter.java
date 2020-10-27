@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component("LibreOfficePDFWriter")
+@Component("application/pdf")
 public class LibreOfficePDFWriter implements Writer {
     @Autowired
     WriterFactory writerFactory;
@@ -23,7 +23,7 @@ public class LibreOfficePDFWriter implements Writer {
         try {
             File tempFile = File.createTempFile("topdf", ".docx");
             OutputStream tempFileOutputStream = new FileOutputStream(tempFile);
-            writerFactory.getWriter("Docx4jXHTMLWriter").write(doc, tempFileOutputStream);
+            writerFactory.getWriter("application/vnd.openxmlformats-officedocument.wordprocessingml.document").write(doc, tempFileOutputStream);
             File pdfFile = converter.convert(tempFile);
             Files.copy(pdfFile.toPath(), out);
         } catch (IOException | LibreofficeException e) {
