@@ -29,7 +29,7 @@ public class PrinterController {
         response.setHeader("Content-Type", "application/vnd.openxmlformats-officedocument.wordprocessingm");
         printerService.print(request.getInputStream(),
                              response.getOutputStream(),
-                             "LibreOfficePDFWriter");
+                             request.getHeader("Accept"));
         response.setHeader("Content-Length", String.valueOf(response.getBufferSize()));
     }
 }
